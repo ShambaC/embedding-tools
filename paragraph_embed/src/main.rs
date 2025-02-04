@@ -114,7 +114,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     options["embedding"] = serde_json::Value::Bool(true);
     options["ctx-size"] = serde_json::Value::from(ctx_size);
     options["batch-size"] = serde_json::Value::from(ctx_size);
-    options["ubatch-size"] = serde_json::Value::from(ctx_size);
 
     let graph =
         GraphBuilder::new(GraphEncoding::Ggml, ExecutionTarget::AUTO)
@@ -156,6 +155,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     // The last segment
     if !current_section.trim().is_empty() {
         println!("\n Current section size {}", current_section.len());
+
+        if current_section.len() >= 4 {
+            println!("\n Current section peek: {}", &current_section[0..5]);
+        }
+        else {
+            println!("\n Current section peek: {}", current_section);
+        }
+
         let uuid = Uuid::new_v4();
         match generate_upsert(&mut context, &current_section, &current_section, &client, &uuid.to_string(), collection_name, vector_size).await {
             Ok(_) => (),
