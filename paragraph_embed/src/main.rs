@@ -134,8 +134,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         if line.trim().is_empty() && (!current_section.trim().is_empty()) {
             println!("\n Current section size {}", current_section.len());
 
-            if current_section.chars().count() >= 10 {
-                println!("\n Current section peek: {}", &current_section[0..10]);
+            if current_section.chars().count() >= 5 {
+                println!("\n Current section peek: {}", &current_section[0..5]);
             } else {
                 println!("\n Current section peek: {}", current_section);
             }
@@ -163,8 +163,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     if !current_section.trim().is_empty() {
         println!("\n Current section size {}", current_section.len());
 
-        if current_section.chars().count() >= 10 {
-            println!("\n Current section peek: {}", &current_section[0..10]);
+        if current_section.chars().count() >= 5 {
+            println!("\n Current section peek: {}", &current_section[0..5]);
         } else {
             println!("\n Current section peek: {}", current_section);
         }
