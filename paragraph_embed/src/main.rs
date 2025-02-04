@@ -133,6 +133,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
         let line = line_result?;
         if line.trim().is_empty() && (!current_section.trim().is_empty()) {
             println!("\n Current section size {}", current_section.len());
+            
+            if current_section.len() >= 10 {
+                println!("\n Current section peek: {}", &current_section[0..10]);
+            } else {
+                println!("\n Current section peek: {}", current_section);
+            }
+
             let uuid = Uuid::new_v4();
             match generate_upsert(&mut context, &current_section, &current_section, &client, &uuid.to_string(), collection_name, vector_size).await {
                 Ok(_) => (),
