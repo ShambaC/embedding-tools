@@ -156,10 +156,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
     if !current_section.trim().is_empty() {
         println!("\n Current section size {}", current_section.len());
 
-        if current_section.len() >= 4 {
-            println!("\n Current section peek: {}", &current_section[0..5]);
-        }
-        else {
+        if current_section.len() >= 10 {
+            println!("\n Current section peek: {}", &current_section[0..10]);
+        } else {
             println!("\n Current section peek: {}", current_section);
         }
 
